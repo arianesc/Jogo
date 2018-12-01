@@ -54,16 +54,9 @@ function draw(){
 	}
 
 			
-	image(ambiente[indice[0]],0,0);
-	image(ambiente[indice[1]],100,0);
-	image(ambiente[indice[2]],200,0);
-	image(ambiente[indice[3]],300,0);
-	image(ambiente[indice[4]],400,0);
-	image(ambiente[indice[5]],500,0);
-	image(ambiente[indice[6]],600,0);
-	image(ambiente[indice[7]],700,0);
-	image(ambiente[indice[8]],800,0);
-	image(ambiente[indice[9]],900,0);
+	for(i=0;i<10;i++){
+		image(ambiente[indice[i]],i*100,0);
+	}
 
 	//CONDIÇÃO PARA MUDANÇA DE NÍVEL
 	//NIVEL 2
