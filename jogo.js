@@ -156,36 +156,18 @@ function draw(){
 		CENÁRIO, RESETA OS VALORES.*/
 		if(oX > 25){
 			oX -= 5;
-			if(pontuacao >= 1000 && pontuacao < 3000){
-				oX -= 10;
-			}
-			if(pontuacao > 3000){
-				oX -=15;
-			}
 		}else{		
 			oX = 975;
 			oY = random(475);
 		}
 		if(oX1 > 25){
-			oX -= 5;
-			if(pontuacao >= 1000 && pontuacao < 3000){
-				oX1 -= 10;
-			}
-			if(pontuacao > 3000){
-				oX1 -=15;
-			}
+			oX1 -= 10;
 		}else{
 			oX1 = 975;
 			oY1 = random(475);
 		}
 		if(oX2 > 25){
-			oX2 -= 5;
-			if(pontuacao >= 1000 && pontuacao < 3000){
-				oX2 -= 10;
-			}
-			if(pontuacao > 3000){
-				oX2 -=15;
-			}
+			oX2 -= 15;
 		}else{
 			oX2 = 975;
 			oY2 = random(475);
@@ -246,6 +228,7 @@ function draw(){
 			oX1 = 975
 			oX2 = 975
 			cont = 0;
+			pontuacao = 0;
 		}
 	}
 }
