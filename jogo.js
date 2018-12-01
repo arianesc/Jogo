@@ -5,21 +5,21 @@ var oX1 = 975, oY1;//coordenadas do segundo tronco
 var oX2 = 975, oY2;//coordenadas do terceiro tronco
 
 //vetores que guardam as imagens do jogo
-var gato = [], tronco = [], ambiente = [];
+var gato = [], tronco = [], ambiente = [], painel = [];
 
 //variaveis responsaveis pela animação do jogo
 var cont = 0, cont2 = 0, l = 0, indice = [];
 
-//variaveis responsaveis pela contagem regressiva de gameover
-var cont3 = 0, regressao = 10;
-
 //variavel responsavel pela mudanca de tela
-var tela = 1;
+var tela = 1, k = 0;
 
 //contador de pontuação
 var pontuacao = 0;
 
 function preload() { 
+	for(i=0;i<4;i++){
+		painel[i] = loadImage("figuras/tela"+i+".png");
+	}
 	for(i=0;i<4;i++){
 		tronco[i] = loadImage("figuras/tronco"+i+".png");
 	}
@@ -40,18 +40,35 @@ function draw(){
 
 	//GERANDO A TELA INICIAL
 	if(tela == 1){
-		for(i=0;i<10;i++){
-			indice[i] = i;
+		cont++;
+
+		if(cont >= 30 && cont <= 80){
+			k=1;
+		}else{
+			k=0;
 		}
-		textSize(28); 
-		fill(200);
-		text("Pressione ENTER para iniciar", 50, 50);
-		if ( keyIsDown(13) ) 
+
+		if(cont > 80){
+			cont = 0;
+		}
+
+		image(painel[k],0,0);
+		
+		if ( keyIsDown(13) ) {
 			tela = 2; 
+			cont = 0;
+		}
+
+
 	}
 
 	//TELA DE JOGO
 	if(tela == 2){
+
+		for(i=0;i<10;i++){
+			indice[i] = i;
+		}
+
 		//CONTAGEM DA PONTUAÇÃO
 		if(pontuacao <= 1000){
 			pontuacao++;
@@ -92,6 +109,7 @@ function draw(){
 				var condicao = y-oY1;
 				if(condicao < 50 && condicao > -50){
 				tela = 3;
+				cont=0;
 				}
 			}
 
@@ -102,6 +120,7 @@ function draw(){
 				var condicao = y-oY2;
 				if(condicao < 50 && condicao > -50){
 					tela = 3;
+					cont=0;
 				}
 			}	
 		}
@@ -123,6 +142,7 @@ function draw(){
 			var condicao = y-oY;
 			if(condicao < 50 && condicao > -50){
 				tela = 3;
+				cont=0;
 			}
 		}
 	
@@ -209,54 +229,23 @@ function draw(){
 		text("Pontos: " + pontuacao + " ", 600, 65);
 	}
 
+	if(tela==3){
+		image(painel[2],0,0);
+		cont++;
+		if(cont == 100){
+			tela = 4;
+		}
+	}
+
 	//TELA DE GAME OVER
-	if(tela == 3){
-		cont3++;
-		textSize(50);
-		fill(255);
-		text("GAME OVER", 300, 300)
-
-		textSize(50);
-		fill(255);
-		text("O jogo reinicia em: "+ regressao, 300, 360);
-
-		if(cont3== 30){
-			regressao--;
-		}
-		if(cont3 == 60){
-			regressao--;
-		}
-		if(cont3 == 90){
-			regressao--;
-		}
-		if(cont3 == 120){
-			regressao--;
-		}
-		if(cont3 == 150){
-			regressao--;
-		}
-		if(cont3 == 180){
-			regressao--;
-		}
-		if(cont3 == 210){
-			regressao--;
-		}
-		if(cont3 == 240){
-			regressao--;
-		}
-		if(cont3 == 270){
-			regressao--;
-		}
-		if(cont3 == 300){
-			regressao--;
-		}
-
-		if(regressao == 0){
+	if(tela == 4){
+		image(painel[3],0,0);
+		if ( keyIsDown(13) ) {
 			tela = 1;
-			regressao = 10;
-			cont3=0;
-			pontuacao=0;
-			oX = 975;oX1 = 975;oX2 = 975;
+			oX = 975
+			oX1 = 975
+			oX2 = 975
+			cont = 0;
 		}
 	}
 }
